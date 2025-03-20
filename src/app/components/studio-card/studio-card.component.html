@@ -1,0 +1,38 @@
+<div class="border rounded-lg shadow-md p-4 bg-white">
+  <!-- Studio Image -->
+  <img
+    [src]="studio.Images[0]"
+    alt="{{ studio.Name }}"
+    class="w-full h-40 object-cover rounded-md mb-4"
+  />
+
+  <!-- Studio Details -->
+  <h3 class="text-lg font-semibold">{{ studio.Name }}</h3>
+  <p class="text-sm text-gray-600">{{ studio.Type }} - {{ studio.Location.Area }}</p>
+  <p class="text-sm text-gray-600">📍 {{ studio.Location.Address }}</p>
+
+  <!-- Amenities -->
+  <p class="text-xs text-gray-500 mt-2">
+    🏠 Amenities: {{ studio.Amenities.join(', ') }}
+  </p>
+
+  <!-- Price and Rating -->
+  <div class="flex justify-between items-center mt-3">
+    <span class="text-blue-600 font-bold">{{ studio.PricePerHour }} {{ studio.Currency }}/hr</span>
+    <span class="text-yellow-500">⭐ {{ studio.Rating }}/5</span>
+  </div>
+
+  <!-- Book Now Button -->
+  <button
+    class="bg-green-500 text-white p-2 w-full mt-3 rounded-lg hover:bg-green-600"
+    (click)="openModal()">
+    Book Now
+  </button>
+
+  <!-- Booking Modal (Only visible when showModal is true) -->
+  <app-booking-modal
+    *ngIf="showModal()"
+    [studio]="studio"
+    (closeModal)="closeModal()">
+  </app-booking-modal>
+</div>

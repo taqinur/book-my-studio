@@ -1,0 +1,25 @@
+<div class="p-6">
+  <!-- Search Bar -->
+  <input
+    type="text"
+    placeholder="Search by location..."
+    class="border p-2 rounded-lg w-full mb-4"
+    (input)="onSearchLocation($event)"
+  />
+
+  <!-- Search by Radius Button -->
+  <button
+    class="bg-blue-500 text-white p-2 rounded-lg w-full mb-4"
+    (click)="onSearchRadius()"
+  >
+    Search Nearby Studios (10KM)
+  </button>
+
+  <!-- Studio List -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <app-studio-card
+      *ngFor="let studio of studios()"
+      [studio]="studio">
+    </app-studio-card>
+  </div>
+</div>

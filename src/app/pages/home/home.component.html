@@ -1,0 +1,56 @@
+<div class="p-6">
+  <h2 class="text-2xl font-semibold mb-4">Find a Studio</h2>
+
+  <!-- Search Bar -->
+  <div class="relative mb-6">
+    <div class="flex gap-4">
+      <div class="flex-1">
+        <input
+          type="text"
+          class="border p-2 w-full rounded-md"
+          placeholder="Search by location..."
+          [value]="searchQuery()"
+          (input)="onSearchChange()"
+        />
+
+        <!-- Auto-Complete Suggestions -->
+        <ul *ngIf="locationSuggestions().length > 0" class="absolute bg-white border w-full mt-1 rounded-md z-10">
+          <li
+            *ngFor="let location of locationSuggestions()"
+            class="p-2 hover:bg-gray-100 cursor-pointer"
+            (click)="selectLocation(location)">
+            {{ location }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <select
+          class="border p-2 rounded-md"
+          [value]="selectedRadius()"
+          (change)="onRadiusChange($event)">
+          <option value="10">10 km</option>
+          <option value="20">20 km</option>
+          <option value="30">30 km</option>
+        </select>
+        <button
+          class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+          (click)="getCurrentLocation()">
+          Search by Location
+        </button>
+      </div>
+    </div>
+
+    <!-- Error Message -->
+    <p *ngIf="errorMessage()" class="text-red-500 text-sm mt-2">{{ errorMessage() }}</p>
+  </div>
+
+  <!-- Studio List -->
+  <div *ngIf="studios().length === 0" class="text-gray-500">
+    No studios found.
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <app-studio-card *ngFor="let studio of studios()" [studio]="studio"></app-studio-card>
+  </div>
+</div>
