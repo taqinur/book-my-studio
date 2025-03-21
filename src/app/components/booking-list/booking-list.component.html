@@ -1,0 +1,13 @@
+<div class="p-6">
+  <h2 class="text-2xl font-semibold mb-4">Your Bookings</h2>
+
+  <div *ngIf="userBookings().length === 0" class="text-gray-500">
+    No bookings found.
+  </div>
+
+  <div *NgFor="let booking of userBookings()" class="border rounded-lg p-4 shadow-md bg-white mb-4">
+    <h3 class="text-lg font-semibold">{{ booking.studioName }}</h3>
+    <p class="text-sm text-gray-600">📅 {{ booking.date }} | ⏰ {{ booking.timeSlot }}</p>
+    <p class="text-sm text-gray-600">👤 {{ booking.userName }} | ✉️ {{ booking.userEmail }}</p>
+  </div>
+</div>

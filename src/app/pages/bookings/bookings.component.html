@@ -1,0 +1,31 @@
+<div class="p-6">
+  <h2 class="text-2xl font-semibold mb-4">My Bookings</h2>
+
+  <div *ngIf="bookingsList().length === 0" class="text-gray-500">
+    No bookings found.
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div *ngFor="let booking of bookingsList()" class="border rounded-lg shadow-md p-4 bg-white">
+      <h3 class="text-lg font-semibold">{{ booking.studioName }}</h3>
+      <p class="text-sm text-gray-600">
+          <span class="font-medium">Type:</span> {{ booking.studioType }}
+        </p>
+
+      <div class="mt-2 space-y-2">
+        <p class="text-sm text-gray-600">
+          <span class="font-medium">Username:</span> {{ booking.userName }}
+        </p>
+        <p class="text-sm text-gray-600">
+          <span class="font-medium">Email:</span> {{ booking.userEmail }}
+        </p>
+        <p class="text-sm text-gray-600">
+          <span class="font-medium">Date:</span> {{ booking.date }}
+        </p>
+        <p class="text-sm text-gray-600">
+          <span class="font-medium">Time:</span> {{ booking.timeSlot }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

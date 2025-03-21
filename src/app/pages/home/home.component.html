@@ -36,7 +36,7 @@
         <button
           class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
           (click)="getCurrentLocation()">
-          Search by Location
+          Search Nearby Studios ({{ selectedRadius() }}KM)
         </button>
       </div>
     </div>
@@ -46,7 +46,7 @@
   </div>
 
   <!-- Studio List -->
-  <div *ngIf="studios().length === 0" class="text-gray-500">
+  <div *ngIf="studios().length < 1 " class="text-gray-500">
     No studios found.
   </div>
 

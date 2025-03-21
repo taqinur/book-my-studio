@@ -20,7 +20,7 @@ export class HomeComponent {
     filterByLocation(this.searchQuery());
 
     // Generate location suggestions
-    const uniqueLocations = new Set(studioList().map(studio => studio.Location.Area));
+    const uniqueLocations = new Set(studioList().map(studio => studio.Location.Area || studio.Location.City));
     this.locationSuggestions.set(
       [...uniqueLocations].filter(location =>
         location.toLowerCase().includes(this.searchQuery().toLowerCase())

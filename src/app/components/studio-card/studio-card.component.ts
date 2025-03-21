@@ -1,10 +1,11 @@
 import { Component, Input, signal } from '@angular/core';
 import { BookingModalComponent } from "../booking-modal/booking-modal.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-studio-card',
   templateUrl: 'studio-card.component.html',
-  imports: [BookingModalComponent],
+  imports: [BookingModalComponent, CommonModule],
 })
 export class StudioCardComponent {
   @Input() studio: any; // Receives studio data
