@@ -1,59 +1,44 @@
 # BookMyStudio
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+Live Link - https://book-my-studio-iota.vercel.app/
 
-## Development server
+## Description 
 
-To start a local development server, run:
+A dynamic, user-friendly Studio Booking Application using Angular. The application includes features such as studio search, availability checking and booking functionality. 
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Features
+1. Studio List Page:
+  a. Create a page that displays a list of studios available for booking.
+  b. The list should include essential information for each studio:
+    i. Name
+    ii. Type (e.g., Recording Studio, Music Studio)
+    iii. Location (City, Area, Address)
+    iv. Amenities List
+    v. Price per hour
+    vi. Rating (1-5 stars)
+  c. Each studio should have a button to proceed with booking.
+2. Search by Place:
+  a. Implement a search bar that allows users to filter studios by location (Area).
+  b. This search will include an auto-complete feature that shows a reference location list.
+  c. The Studi list should dynamically update as the user types in the search bar.
+  d. When a user searches for a city or area, only studios in that city/area should be displayed.
+3. Search by Radius (10 km):
+  a. Implement search by radius that allows users to search for studios by their current location within a given radius. (Example: 10KM, 20KM).
+  b. Handle errors gracefully, such as the user denying location access, or when no studios are within the 10 km radius.
+4. Studio Availability and Booking:
+  a. On clicking booking now button a popup will be open. The form should collect:
+    i. Date Picker for selecting a date.
+    ii. Time Slot Picker based on the studio’s availability hours.
+    iii. User Info (Name, Email).
+  b. Availability Check:
+    i. When the user selects a time slot, check the availability against the studio's available time slots.
+    ii. If the time slot is already booked, display an error message (e.g., "The selected time slot is not available. Please choose another time").
+    iii. On successful booking, display a confirmation message with booking details.
+    iv. Successfully store booking data in local storage.
+5. Booking List Page:
+  a. Create a page that displays a list of available bookings.
+  b. The list should include essential information for each studio:
+    i. User Info Name, Email
+    ii. Type (e.g., Recording Studio, Music Studio)
+    iii. Location (City/Area)
+    iv. Time & Date
