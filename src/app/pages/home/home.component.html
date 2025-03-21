@@ -9,8 +9,8 @@
           type="text"
           class="border p-2 w-full rounded-md"
           placeholder="Search by location..."
-          [value]="searchQuery()"
-          (input)="onSearchChange()"
+          [(ngModel)]="searchQuery"
+          (ngModelChange)="onSearchChange()"
         />
 
         <!-- Auto-Complete Suggestions -->
@@ -46,7 +46,7 @@
   </div>
 
   <!-- Studio List -->
-  <div *ngIf="studios().length < 1 " class="text-gray-500">
+  <div *ngIf="studios().length < 1 " class="text-gray-500 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
     No studios found.
   </div>
 

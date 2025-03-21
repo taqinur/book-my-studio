@@ -2,12 +2,13 @@ import { Component, signal } from '@angular/core';
 import { filteredStudios, filterByLocation, studioList, filterByRadius } from '../../state/studio.state';
 import { StudioCardComponent } from "../../components/studio-card/studio-card.component";
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.component.html',
   standalone: true,
-  imports: [StudioCardComponent, CommonModule]
+  imports: [StudioCardComponent, CommonModule, FormsModule]
 })
 export class HomeComponent {
   studios = filteredStudios; // Dynamic list of studios
@@ -17,15 +18,26 @@ export class HomeComponent {
   selectedRadius = signal('10');
 
   onSearchChange() {
-    filterByLocation(this.searchQuery());
+    const query = this.searchQuery().trim();
+
+    if (query === '') {
+      filteredStudios.set(studioList());
+    } else {
+      filteredStudios.set(
+        studioList().filter(studio =>
+          studio.Location.Area.toLowerCase().includes(query.toLowerCase()) ||
+          studio.Location.City.toLowerCase().includes(query.toLowerCase())
+        )
+      );
+    }
 
     // Generate location suggestions
     const uniqueLocations = new Set(studioList().map(studio => studio.Location.Area || studio.Location.City));
-    this.locationSuggestions.set(
+    query ? this.locationSuggestions.set(
       [...uniqueLocations].filter(location =>
-        location.toLowerCase().includes(this.searchQuery().toLowerCase())
+        location.toLowerCase().includes(query.toLowerCase())
       )
-    );
+    ) : this.locationSuggestions.set([]);
   }
 
   selectLocation(location: string) {

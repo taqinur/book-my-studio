@@ -19,6 +19,7 @@ export class BookingModalComponent {
   timeSlot = signal('');
   errorMessage = signal('');
   successMessage = signal('');
+  showSuccess = signal(false);
   today = new Date().toISOString().split('T')[0];
   availableTimeSlots: string[] = [];
 
@@ -70,12 +71,26 @@ export class BookingModalComponent {
     // Save booking
     addBooking(newBooking);
 
-    // Show success message
-    this.successMessage.set(`Booking confirmed for ${this.studio.Name} on ${this.bookingDate()} at ${this.timeSlot()}`);
+    this.errorMessage.set('');
 
-    // Close modal after 2 seconds
+    // Show success message
+    this.successMessage.set(`
+      Booking Confirmed!
+
+      Studio: ${this.studio.Name}
+      Date: ${this.bookingDate()}
+      Time: ${this.timeSlot()}
+      Name: ${this.userName()}
+      Email: ${this.userEmail()}
+
+      Thank you for choosing Us!
+    `);
+
+    this.showSuccess.set(true);
+
+    // Close modal after 3 seconds
     setTimeout(() => {
       this.closeModal.emit();
-    }, 2000);
+    }, 3000);
   }
 }
